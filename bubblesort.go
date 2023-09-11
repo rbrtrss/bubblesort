@@ -6,17 +6,24 @@ import (
 )
 
 func main() {
-	// fmt.Println("Implementing a Bubble Sort algorithm")
-	// fmt.Printf("%x \n", makeRandomSlice(5, 10))
-	s1 := makeRandomSlice(50000, 10)
-	printSlice(s1, 5)
-	bubbleSort(s1[:5])
-	printSlice(s1, 5)
-	// checkSorted([]int{1, 2, 3})
-	// checkSorted([]int{3, 2, 1})
-	// checkSorted([]int{1, 2, 3, 4, 5})
-	// checkSorted([]int{4, 2, 4})
-	// checkSorted([]int{2, 2, 3})
+	// Get the number of items and maximum item value.
+	var numItems, max int
+	fmt.Printf("# Items: ")
+	fmt.Scanln(&numItems)
+	fmt.Printf("Max: ")
+	fmt.Scanln(&max)
+
+	// Make and display an unsorted slice.
+	slice := makeRandomSlice(numItems, max)
+	printSlice(slice, 40)
+	fmt.Println()
+
+	// Sort and display the result.
+	bubbleSort(slice)
+	printSlice(slice, 40)
+
+	// Verify that it's sorted.
+	checkSorted(slice)
 }
 
 func makeRandomSlice(numItems, max int) []int {
@@ -28,6 +35,9 @@ func makeRandomSlice(numItems, max int) []int {
 }
 
 func printSlice(slice []int, numItems int) {
+	if numItems > len(slice) {
+		numItems = len(slice)
+	}
 	s := slice[:numItems]
 	fmt.Printf("%d \n", s)
 }
